@@ -29,7 +29,7 @@ farenheitLowTemp <- kelvinToFarenheit(weatherData$main["temp_min"]);
 currentCondition <- weatherData$weather[[1]]$description;
 
 # Writes out the weather. Modify this to write out the weather in whatever format you prefer.
-cat( "Nearby Weather Station Reporting:", weatherData$name,"\n",
+cat( "Latest Weather Station:", weatherData$name,"\n",
      "Current Condition: ", currentCondition, "\n",
      "Current Temp: ", farenheitCurrentTemp, "° F\n",
      "High Temp: ", farenheitHighTemp, "° F\n",
