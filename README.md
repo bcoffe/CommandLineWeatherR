@@ -14,10 +14,10 @@ This application uses my APPID key from Open Weather. Change that key to your ke
 
 Assuming the prerequisites are met, this application can be run by typing:
 
-Rscript myWeather.R <LAT_DECIMAL> <LON_DECIMAL> <KEY>
+Rscript myWeather.R LAT_DECIMAL LON_DECIMAL KEY
 
 Replacing LAT_DECIMAL and LON_DECIMAL with the Latitude and Longitude for the place you would like the current weather.
 
 Example: Rscript myWeather.R 36 -75 randomPlaceWeather
 
-The script will download an image of the current weather and place it in the img/ directory and name the dowloaded file using the <KEY> name you pass in. It will overright the image each time the script is run. Therefore, if you are wanting to run the script for multiple locations at once, such as in GeekTool or Conky please give each command a unique <KEY>.
+Additionally, the script will download an image of the current weather and place it in the img/ directory and name the dowloaded file using the KEY name you pass in. It will overright the image each time the script is run. Therefore, if you are wanting to run the script for multiple locations at once, such as in GeekTool or Conky, give each command a unique KEY.
