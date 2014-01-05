@@ -16,7 +16,12 @@ farenheitCurrentTemp <- kelvinToFarenheit(weatherData$main["temp"]);
 farenheitHighTemp <- kelvinToFarenheit(weatherData$main["temp_max"]);
 farenheitLowTemp <- kelvinToFarenheit(weatherData$main["temp_min"]);
 
-cat("In ",weatherData$name,
-    ", currently it is ", farenheitCurrentTemp, "° F ",
-    "with a of High ", farenheitHighTemp, "° F ",
-    "and Low of ", farenheitLowTemp, "° F.\n", sep='');
+cat( "Conditions for weatherData$name\n",
+    "Current Temp: ", farenheitCurrentTemp, "° F\n",
+    "High Temp: ", farenheitHighTemp, "° F\n",
+    "Low Temp: ", farenheitLowTemp, "° F.", sep='');
+print(weatherData);
+
+f = CFILE("img/CurrentWeather.png", mode="wb");
+curlPerform(url = paste("http://openweathermap.org/img/w/", weatherData$weather[[1]]$icon, ".png", sep=''), writedata = f@ref);
+close(f);
