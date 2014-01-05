@@ -5,11 +5,10 @@ kelvinToFarenheit <- function (kelvinTemp) {
   (kelvinTemp - 273.15)*1.8 + 32;
 }
 
-getWeatherImage <- function (imageName) {
+getWeatherImage <- function (imageName, key) {
+  imageLocation <- paste("http://openweathermap.org/img/w/", imageName, ".png", sep='');
   f <- CFILE(paste("img/", key, ".png", sep=''), mode="wb");
-  curlPerform( url = 
-               paste("http://openweathermap.org/img/w/", imageName, ".png", sep=''), 
-               writedata = f@ref);
+  curlPerform( url = imageLocation, writedata = f@ref);
   close(f);
 }
 
@@ -37,4 +36,5 @@ cat( weatherData$name,"\n",
      "Low Temp: ", farenheitLowTemp, "° F.", sep='');
 
 # Retrieves the image based on the weather returned in getURL
-getWeatherImage( weatherData$weather[[1]]$icon);
+getWeatherImage( weatherData$weather[[1]]$icon, key);
+
