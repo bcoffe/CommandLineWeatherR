@@ -5,17 +5,17 @@ kelvinToFarenheit <- function (kelvinTemp) {
   (kelvinTemp - 273.15)*1.8 + 32;
 }
 
-getWeatherImage <- function (imageName, key) {
+getWeatherImage <- function (imageName, imagePath) {
   imageLocation <- paste("http://openweathermap.org/img/w/", imageName, ".png", sep='');
-  f <- CFILE(paste("~/Development/rprogramming/CommandLineWeatherR/img/", key, ".png", sep=''), mode="wb");
-  curlPerform( url = imageLocation, writedata = f@ref);
-  close(f);
+  f <- CFILE(paste(imagePath, ".png", sep=''), mode="wb");
+  curlPerform(url = imageLocation, writedata = f@ref);
+  msg.trap <- capture.output(suppressMessages(close(f)));
 }
 
 args <- commandArgs(trailingOnly = TRUE);
 latitude <- args[1];
 longitude <- args[2];
-key <- args[3];
+imagePath <- args[3];
 
 currentWeather <- getURL(paste("http://api.openweathermap.org/data/2.5/weather?lat=",
                                latitude, 
@@ -33,8 +33,7 @@ cat( weatherData$name,"\n",
      "Current Condition: ", currentCondition, "\n",
      "Current Temp: ", farenheitCurrentTemp, "° F\n",
      "High Temp: ", farenheitHighTemp, "° F\n",
-     "Low Temp: ", farenheitLowTemp, "° F.", sep='');
+     "Low Temp: ", farenheitLowTemp, "° F.\n", sep='');
 
 # Retrieves the image based on the weather returned in getURL
-getWeatherImage( weatherData$weather[[1]]$icon, key);
-
+getWeatherImage( weatherData$weather[[1]]$icon, imagePath);
