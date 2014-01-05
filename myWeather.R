@@ -7,7 +7,7 @@ kelvinToFarenheit <- function (kelvinTemp) {
 
 getWeatherImage <- function (imageName, key) {
   imageLocation <- paste("http://openweathermap.org/img/w/", imageName, ".png", sep='');
-  f <- CFILE(paste("img/", key, ".png", sep=''), mode="wb");
+  f <- CFILE(paste("~/Development/rprogramming/CommandLineWeatherR/img/", key, ".png", sep=''), mode="wb");
   curlPerform( url = imageLocation, writedata = f@ref);
   close(f);
 }
