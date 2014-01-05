@@ -13,7 +13,7 @@ getWeatherImage <- function (imageName) {
   close(f);
 }
 
-args <- commandArgs(trailingOnly = TRUE)
+args <- commandArgs(trailingOnly = TRUE);
 latitude <- args[1];
 longitude <- args[2];
 key <- args[3];
