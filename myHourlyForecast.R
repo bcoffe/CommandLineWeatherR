@@ -3,18 +3,19 @@ suppressMessages(library('RCurl'));
 
 source('~/Development/rprogramming/CommandLineWeatherR/getWeatherImage.R');
 source('~/Development/rprogramming/CommandLineWeatherR/kelvinToFarenheit.R');
+source('~/Development/rprogramming/CommandLineWeatherR/getCurrentLocation.R');
 
 # Change to your id. Getting an ID from OpenWeather.org is Free
 appId <- "10c94e0253609fd9f78e207f831b2b09";
 
 args <- commandArgs(trailingOnly = TRUE);
-latitude <- args[1];
-longitude <- args[2];
-imagePath <- args[3];
+imagePath <- args[1];
+
+locationData <- getCurrentLocation();
 
 currentWeather <- getURL(paste("http://api.openweathermap.org/data/2.5/forecast?lat=",
-                               latitude, 
-                               "&lon=", longitude,
+                               locationData$latitude, 
+                               "&lon=", locationData$longitude,
                                "&APPID=", appId, sep=''));
 weatherData <- fromJSON(currentWeather);
 
